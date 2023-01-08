@@ -51,13 +51,11 @@ async function run() {
           updatedAt: String
         }
         */
-    const ConversationMessageCollection = db.collection(
-      "conversation-messages"
-    );
+    const ConversationMessageCollection = db.collection("conversation-messages");
 
     // get data from server:
     app.get("/productCollection", async (req, res) => {
-      console.log(req.query);
+      // console.log(req.query);
       const query = req.query;
       if (Object.keys(query).length) {
         let price = query.price;
@@ -74,9 +72,9 @@ async function run() {
         const washAmountStr = query.washAmount.split(",");
         const washAmount = washAmountStr.map((wash) => parseInt(wash));
 
-        console.log(rentType);
-        console.log(bedAmount);
-        console.log(washAmount);
+        // console.log(rentType);
+        // console.log(bedAmount);
+        // console.log(washAmount);
         const findProducts = products
           .find({
             city: city,
@@ -136,6 +134,9 @@ async function run() {
       res.send(find);
     });
 
+
+
+
     app.post("/productCollection", async (req, res) => {
       const user = req.body;
       // console.log(user);
@@ -173,6 +174,7 @@ async function run() {
       const user = await usersCollection.findOne(query);
       res.send({ isSeller: user?.role === "seller" });
     });
+
     // Get Who is Buyer :
     app.get("/users/buyer/:email", async (req, res) => {
       const email = req.params.email;
@@ -183,29 +185,29 @@ async function run() {
 
     app.get("/dashboard/allsellers", async (req, res) => {
       const role = req.query.role;
-      console.log(req.query.role);
+      // console.log(req.query.role);
       const users = await usersCollection.find({}).toArray();
       const result = users.filter((product) => product.role === role);
-      console.log("jsx".result);
+      // console.log("jsx".result);
       res.send(result);
     });
 
     app.get("/dashboard/allbuyers", async (req, res) => {
       const role = req.query.role;
-      console.log(req.query.role);
+      // console.log(req.query.role);
       const users = await usersCollection.find({}).toArray();
       const result = users.filter((product) => product.role === role);
-      console.log("jsx".result);
+      // console.log("jsx".result);
       res.send(result);
     });
 
     // Delete Users :
     app.delete("/users/:id", async (req, res) => {
       const id = req.params.id;
-      console.log(id);
+      // console.log(id);
       const query = { _id: ObjectId(id) };
       const result = await usersCollection.deleteOne(query);
-      console.log(result);
+      // console.log(result);
       res.send(result);
     });
 
