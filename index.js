@@ -13,7 +13,7 @@ app.use(cors());
 // app.use(multer());
 app.use(express.json());
 
-const uri = `mongodb+srv://${process.env.db_user}:${process.env.db_pass}@cluster0.yce8pf3.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.db_user}:${process.env.db_pass}@cluster0.3exxtfz.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
